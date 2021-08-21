@@ -1,0 +1,39 @@
+﻿@model InitializationData
+@{
+	@inject Services.Services.ITimeSingleton singletonService
+	@inject Services.Services.ITimeTransient transientService
+	@inject Services.Services.ITimeScoped scopedService
+}
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="~/css/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<script src="~/css/twitter-bootstrap/js/bootstrap.js"></script>
+</head>
+<body style="font-family: 'Times New Roman'">
+	<center><h1>ASP.NET Core Dependency Injection</h1></center>
+	<div class="container">
+		<table class="table table-bordered table-hover">
+			<tr>
+				<th>Initialization Source</th>
+				<th>Singleton Service Initialization Date Time</th>
+				<th>Transient Service Initialization Date Time</th>
+				<th>Scoped Service Initialization Date Time</th>
+			</tr>
+			<tr>
+				<td><b>Controller action</b></td>
+				<td>@Model.SingletonServiceInitializedOn</td>v
+				<td>@Model.TransientServiceInitializedOn</td>
+				<td>@Model.ScopedServiceInitializedOn</td>
+			</tr>
+			<tr>
+				<td><b>Injected to view by IoC container</b></td>
+				<td>@singletonService.GetTime()</td>v
+				<td>@transientService.GetTime()</td>
+				<td>@scopedService.GetTime()</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
